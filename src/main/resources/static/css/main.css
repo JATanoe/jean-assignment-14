@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('reset.css');
+@import url('variables.css');
+
+html {
+    box-sizing: inherit;
+    font-family: var(--font-sans), sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background: var(--bg-image);
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+
+    color: rgba(var(--gray-200), 1);
+    font-family: inherit;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.2;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input, button, textarea, select {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+#app {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) repeat(3, 1fr);
+    grid-template-rows: auto 1fr auto;
+}
+
+#app-aside {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+}
+
+#app-head {
+    grid-column: 2 / 5;
+    grid-row: 1 / 2;
+}
+
+#app-body {
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
+}
+
+#app-foot {
+    grid-column: 2 / 5;
+    grid-row: 3 / 4;
+}
+
+.welcome, .channel {
+    width: 100%;
+    height: 100vh;
+    max-width: 80rem;
+    max-height: calc(100vh - 4rem);
+
+    border-radius: .25rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.aside {
+    background: rgba(var(--gray-950), .5);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-block: 1.25rem 0;
+    padding-inline: 2rem 0;
+}
+
+.aside h1 {
+    background-color: rgba(var(--gray-950), .2);
+    display: block;
+    padding-block: 1.1rem;
+    padding-inline: 2rem 0;
+    margin-block: -1.2rem 0;
+    margin-inline: -2rem 0;
+}
+
+.aside__tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.aside__tabs h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-inline: 0;
+}
+
+.aside__tab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.aside__tab {
+    background: rgba(var(--gray-950), .25);
+    display: flex;
+    color: rgba(var(--gray-200), .75);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-inline: -2rem 0;
+    transition: background .3s;
+    cursor: pointer;
+}
+
+.aside__tab > a {
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+    padding-block: 1rem;
+    padding-inline: 2.5rem .5rem;
+}
+
+.aside__tab span {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-inline-end: 1rem;
+}
+
+.aside__tab:hover,
+.aside__tab.active {
+    background: rgba(var(--gray-950), .8);
+    color: rgba(var(--gray-100), 1);
+}
+
+.aside__tab a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.welcome__content,
+.channel__header,
+.channel__messages,
+.channel__form {
+    background: rgba(var(--gray-950), .9);
+    padding: 1.25rem;
+}
+
+.welcome__content {
+    display: grid;
+    place-items: center;
+}
+
+.welcome__content section {
+    text-align: center;
+}
+
+.welcome__content section i {
+    font-size: 3rem;
+}
+
+.welcome__content section h2 {
+    font-weight: 600;
+    margin-block-start: 1rem;
+}
+
+.welcome__content section p {
+    margin-block-start: .5rem;
+}
+
+.channel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--gray-700), .5);
+}
+
+.channel__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.channel__name span {
+    margin-inline-end: .5rem;
+}
+
+.channel__user {
+    display: flex;
+    align-items: flex-end;
+    gap: .5rem;
+}
+
+.channel__user-status {
+    color: rgba(var(--green-500), 1);
+    font-size: .75rem;
+    line-height: 1;
+}
+
+.channel__user-name {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.channel__messages {
+    display: block;
+    overflow: hidden;
+    overflow-y: auto;
+    padding-block: 0;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    border-radius: .25rem;
+    padding-block: .5rem;
+    padding-inline: 1.25rem;
+    margin-inline: -1.25rem;
+    border-bottom: 1px solid rgba(var(--gray-700), .1);
+    cursor: pointer;
+}
+
+.message:hover {
+    background: rgba(var(--gray-950), .25);
+}
+
+.message__user-name {
+    font-size: .875rem;
+    font-weight: 500;
+}
+
+.message__sent-at {
+    display: inline;
+    font-family: var(--font-serif), serif;
+    font-size: .8rem;
+    font-weight: 300;
+    color: rgba(var(--gray-200), .5);
+    padding-inline: .5rem 0;
+}
+
+.message__text {
+    color: rgba(var(--gray-200), .75);
+    font-size: .85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-block-start: .25rem;
+}
+
+.channel__form {
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: start center;
+    padding-block: 0 1.5rem;
+    padding-inline: 1.5rem;
+}
+
+/**
+ * Trick to make a textarea auto-grow in height as the user types.
+ * https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/
+ */
+.channel__form .form {
+    background: rgba(var(--gray-900), .5);
+    position: relative;
+    width: 100%;
+    display: grid;
+    padding-block: .875rem 2.75rem;
+    padding-inline: .75rem;
+    border-radius: .25rem;
+    border: 1px solid rgba(var(--gray-600), 1);
+    transition: border-color .2s ease;
+    box-shadow: var(--shadow-form);
+}
+
+.channel__form .form:focus-within {
+    border-color: rgba(var(--gray-400), .75);
+}
+
+.channel__form .form::after {
+    content: attr(data-replicated-value) " ";
+    white-space: pre-wrap;
+    visibility: hidden;
+}
+
+.channel__form .form .form__label {
+    display: none;
+}
+
+.channel__form .form .form__input {
+    width: 100%;
+    background-color: transparent;
+    color: rgba(var(--slate-300), 1);
+    resize: none;
+}
+
+.channel__form .form .form__input::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.channel__form .form .form__input {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.channel__form .form .form__input::placeholder {
+    color: rgba(var(--gray-600), 1);
+}
+
+.channel__form .form .form__input,
+.channel__form .form::after {
+    font: inherit;
+    line-height: 1.35;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.channel__form .form .form__button {
+    position: absolute;
+    right: .8rem;
+    bottom: .6rem;
+    background-color: rgba(var(--gray-700), .7);
+    color: rgba(var(--gray-900), 1);
+    font-size: .875rem;
+    font-weight: 400;
+    padding-block: .25rem;
+    padding-inline: .4rem;
+    border-radius: .15rem;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.channel__form .form .form__button:hover {
+    background-color: rgba(var(--green-600), 1);
+    color: rgba(var(--green-50), 1);
+}
+
+.channel__form .form .form__button:disabled {
+    background-color: rgba(var(--gray-700), .7);
+    color: rgba(var(--gray-900), 1);
+    cursor: not-allowed;
+}
+
+.channel__form .form .form__button:hover:disabled {
+    background-color: rgba(var(--gray-700), .7);
+    color: rgba(var(--gray-900), 1);
+}

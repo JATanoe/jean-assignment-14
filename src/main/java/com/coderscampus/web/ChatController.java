@@ -33,7 +33,7 @@ public class ChatController {
         return userService.save(user);
     }
 
-    @GetMapping("/welcome")
+    @GetMapping("/")
     public String getWelcome(ModelMap model) {
         model.addAttribute("channels", channelService.getAllChannels());
         return "welcome";

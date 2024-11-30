@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="login">
+    <div class="modal__wrapper">
+        <h1 class="modal__title">Welcome to Chat App</h1>
+        <div id="modal-error" class="modal__message"></div>
+        <div class="modal__form">
+            <label for="modal-input" class="modal__label">Username</label>
+            <input id="modal-input" type="text" class="modal__input" placeholder="Please enter your name">
+            <button id="modal-button" type="submit" class="modal__button">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

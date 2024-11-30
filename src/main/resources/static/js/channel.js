@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const currentUser = sessionStorage.getItem('user');
 
+    if (!currentUser) {
+        window.location.href = '/welcome';
+        return;
+    }
+
     const path = window.location.pathname;
     const param = path.split('/')[2];
     const channelId = parseInt(param, 10);
@@ -8,15 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputElm = document.getElementById('input');
     const submitBtn = document.getElementById('submit');
 
-    if (!currentUser) {
-        window.location.href = '/welcome';
-        return;
-    }
+    const postMessage = async () => {
+        const inputValue = inputElm.value.trim();
 
-    async function postMessage() {
-        const inputValue = inputElm.value;
-
-        if (inputValue.trim() === '') {
+        if (inputValue === '') {
             alert('Please enter a valid message');
             return;
         }
@@ -27,32 +27,33 @@ document.addEventListener('DOMContentLoaded', () => {
             text: inputValue,
         };
 
-        const response = await fetch(`/channels/${channelId}/messages/create`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(message)
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
         try {
+            const response = await fetch(`/channels/${channelId}/messages/create`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(message)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
             inputElm.value = '';
+            await fetchMessages();
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
-        await fetchMessages();
-    }
+    };
 
-    async function fetchMessages() {
-        const response = await fetch(`/channels/${channelId}/messages`);
-
-        if (!response.ok) throw new Error('Network response was not ok');
-
+    const fetchMessages = async () => {
         try {
-            const messages = await response.json();
+            const response = await fetch(`/channels/${channelId}/messages`);
 
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const messages = await response.json();
             const ul = document.getElementById('messages');
             ul.innerHTML = '';
 
@@ -69,23 +70,25 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
-    }
+    };
 
     const toggleSubmitButton = () => {
         submitBtn.disabled = inputElm.value.trim() === '';
-    }
+    };
 
     document.querySelector('.channel__user-name').textContent = JSON.parse(currentUser).name;
 
-    submitBtn.addEventListener("click", postMessage);
     inputElm.addEventListener('input', toggleSubmitButton);
+    submitBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        postMessage().then(r => console.log('Message sent:', r));
+    });
     inputElm.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            postMessage().then(r => console.log('Message sent:', r));
+            submitBtn.click();
         }
     });
-
 
     toggleSubmitButton();
     setInterval(fetchMessages, 500);

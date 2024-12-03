@@ -48,7 +48,7 @@ public class MessageRepository {
     public void initializeMessages() {
         if (findAll().isEmpty()) {
             List<User> users = Arrays.asList(
-                new User("Alice"),  new User("Bob"),  new User("Charli"),
+                new User("Alice"),  new User("Bob"),  new User("Charlie"),
                 new User("Dave"),  new User("Eve"),  new User("Frank"),
                 new User("Grace"),  new User("Heidi"),  new User("Ivan")
             );

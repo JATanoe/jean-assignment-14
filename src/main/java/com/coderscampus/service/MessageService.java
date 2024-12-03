@@ -15,18 +15,12 @@ import java.util.List;
 public class MessageService {
 
     private final MessageRepository messageRepo;
-    private Long count = 1L;
 
-    @Autowired
     public MessageService(MessageRepository messageRepo, UserRepository userRepo) {
         this.messageRepo = messageRepo;
     }
-    
+
     public Message save(Message message) {
-        if (message.getId() == null) {
-            message.setId(count++);
-        }
-        message.setTimestamp(LocalDateTime.now());
         return messageRepo.save(message);
     }
 

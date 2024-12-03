@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentUser = sessionStorage.getItem('user');
 
     if (!currentUser) {
-        window.location.href = '/welcome';
+        window.location.href = '/';
         return;
     }
 

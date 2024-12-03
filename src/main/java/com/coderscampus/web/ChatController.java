@@ -20,7 +20,6 @@ public class ChatController {
     private final UserService userService;
     private final MessageService messageService;
 
-    @Autowired
     public ChatController(ChannelService channelService, UserService userService, MessageService messageService) {
         this.channelService = channelService;
         this.userService = userService;
@@ -31,6 +30,11 @@ public class ChatController {
     @ResponseBody
     public User login(@RequestBody User user) {
         return userService.save(user);
+    }
+
+    @GetMapping("/error")
+    public String getError() {
+        return "error";
     }
 
     @GetMapping("/")
@@ -47,8 +51,7 @@ public class ChatController {
 
     @GetMapping("/channels/{id}")
     public String getChannelMessages(@PathVariable Long id, ModelMap model) {
-        Channel channel = channelService.getChannelById(id);
-        model.addAttribute("channel", channel);
+        model.addAttribute("channel", channelService.getChannelById(id));
         return "channel";
     }
 

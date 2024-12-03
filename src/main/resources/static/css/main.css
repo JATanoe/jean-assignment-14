@@ -433,8 +433,8 @@ input, button, textarea, select {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .channel__form .form .form__input {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 .channel__form .form .form__input::placeholder {

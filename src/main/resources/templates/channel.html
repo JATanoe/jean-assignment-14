@@ -2,46 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" type="text/css" media="all" href="/css/main.css" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/main.css" th:href="@{/css/main.css}"/>
     <title>Channel</title>
 </head>
 <body>
-    <div id="app" class="channel">
-        <div id="app-aside" class="aside" th:insert="~{fragments/aside :: aside}"></div>
+<div id="app" class="channel">
+    <div id="app-aside" class="aside" th:insert="~{fragments/aside :: aside}"></div>
 
-        <div id="app-head" class="channel__header">
-            <h2 class="channel__name" th:inline="text"><span>#</span>[[${channel.name}]]</h2>
-            <div class="channel__user">
-                <span class="channel__user-status">Online</span>
-                <span class="channel__user-name"></span>
-            </div>
-        </div>
-
-        <div id="app-body" class="channel__messages">
-            <ul id="messages"></ul>
-        </div>
-
-        <div id="app-foot" class="channel__form">
-            <div class="form">
-                <label for="input" class="form__label">Message</label>
-                <textarea
-                     id="input"
-                     class="form__input"
-                     placeholder="Type your message here..."
-                     onInput="this.parentNode.dataset.replicatedValue = this.value"
-                ></textarea>
-                <button id="submit" type="submit" class="form__button">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </div>
+    <div id="app-head" class="channel__header">
+        <h2 class="channel__name" th:inline="text"><span>#</span>[[${channel.name}]]</h2>
+        <div class="channel__user">
+            <span class="channel__user-status">Online</span>
+            <span class="channel__user-name"></span>
         </div>
     </div>
 
-    <script type="text/javascript" src="/js/channel.js"></script>
-    <script type="text/javascript" src="/js/autogrowing-textarea.js"></script>
-    <script src="https://kit.fontawesome.com/1d339fd19b.js" crossorigin="anonymous"></script>
+    <div id="app-body" class="channel__messages">
+        <ul id="messages"></ul>
+    </div>
+
+    <div id="app-foot" class="channel__form">
+        <div class="form">
+            <label for="input" class="form__label">Message</label>
+            <textarea
+                    id="input"
+                    class="form__input"
+                    placeholder="Type your message here..."
+                    onInput="this.parentNode.dataset.replicatedValue = this.value"
+            ></textarea>
+            <button id="submit" type="submit" class="form__button">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/channel.js"></script>
+<script type="text/javascript" src="/js/autogrowing-textarea.js"></script>
+<script src="https://kit.fontawesome.com/1d339fd19b.js" crossorigin="anonymous"></script>
 </body>
 </html>

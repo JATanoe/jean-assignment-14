@@ -14,7 +14,6 @@ public class ChannelService {
 
     private final ChannelRepository channelRepo;
 
-    @Autowired
     public ChannelService(ChannelRepository channelRepo) {
         this.channelRepo = channelRepo;
     }

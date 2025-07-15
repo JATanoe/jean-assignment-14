@@ -12,6 +12,7 @@ public class Message {
 	private String timestamp;
 
 	public Message() {
+		this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm a"));
 	}
 
 	public Message(Long channelId, User user, String text) {
